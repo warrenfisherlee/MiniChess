@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <cstdint>
+#include <fstream>
 
 #include "./state.hpp"
 #include "../config.hpp"
@@ -13,6 +14,36 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
+  //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
+  std::ofstream log("gamelog.txt");
+  
+  auto this_board=this->board.board;
+  int nowpiece, score=0;
+  for (int i=0; i<BOARD_H; i++)
+  {
+    for (int j=0; j<BOARD_W; j++)
+    {
+        if (nowpiece=this_board[this->player][i][j])
+        {
+          switch(nowpiece)
+          {
+            case 1:
+              score+=2;
+            case 2:
+              score+=6;
+            case 3:
+              score+=7;
+            case 4:
+              score+=8;
+            case 5:
+              score+=20;
+          }
+        }
+    }
+  }
+  std::cout<<"score: "<<score<<std::endl;
+  
+  log<<"total: "<<score<<std::endl;
   return 0;
 }
 

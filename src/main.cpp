@@ -75,19 +75,19 @@ State* State::next_state(Move move){
   Board next = this->board;
   Point from = move.first, to = move.second;
   
-  int8_t moved = next.board[this->player][from.first][from.second];
+  int8_t moved = next.board[this->player][from.first][from.second]; //moved 是要移動的旗子的編號
   //promotion for pawn
-  if(moved == 1 && (to.first==BOARD_H-1 || to.first==0)){
+  if(moved == 1 && (to.first==BOARD_H-1 || to.first==0)){ //pawn convert into queeen
     moved = 5;
   }
-  if(next.board[1-this->player][to.first][to.second]){
-    next.board[1-this->player][to.first][to.second] = 0;
+  if(next.board[1-this->player][to.first][to.second]){ //if opponent's board has piece on the board
+    next.board[1-this->player][to.first][to.second] = 0; //the piece would be eaten
   }
   
   next.board[this->player][from.first][from.second] = 0;
   next.board[this->player][to.first][to.second] = moved;
   
-  State* next_state = new State(next, 1-this->player);
+  State* next_state = new State(next, 1-this->player); //??? why the next_state save the opponent
   
   if(this->game_state != WIN)
     next_state->get_legal_actions();
@@ -137,11 +137,11 @@ void State::get_legal_actions(){
         // std::cout << this->player << "," << now_piece << ' ';
         switch (now_piece){
           case 1: //pawn
-            if(this->player && i<BOARD_H-1){
+            if(this->player && i<BOARD_H-1){ //1 is black
               //black
-              if(!oppn_board[i+1][j] && !self_board[i+1][j])
+              if(!oppn_board[i+1][j] && !self_board[i+1][j]) //if the square before pawn has no piece
                 all_actions.push_back(Move(Point(i, j), Point(i+1, j)));
-              if(j<BOARD_W-1 && (oppn_piece=oppn_board[i+1][j+1])>0){
+              if(j<BOARD_W-1 && (oppn_piece=oppn_board[i+1][j+1])>0){ //eat upper-right
                 all_actions.push_back(Move(Point(i, j), Point(i+1, j+1)));
                 if(oppn_piece==6){
                   this->game_state = WIN;
@@ -149,7 +149,7 @@ void State::get_legal_actions(){
                   return;
                 }
               }
-              if(j>0 && (oppn_piece=oppn_board[i+1][j-1])>0){
+              if(j>0 && (oppn_piece=oppn_board[i+1][j-1])>0){ //eat upper-left
                 all_actions.push_back(Move(Point(i, j), Point(i+1, j-1)));
                 if(oppn_piece==6){
                   this->game_state = WIN;
@@ -221,7 +221,7 @@ void State::get_legal_actions(){
               
               if(x>=BOARD_H || x<0 || y>=BOARD_W || y<0) continue;
               now_piece = self_board[x][y];
-              if(now_piece) continue;
+              if(now_piece) continue; //??? why ???
               all_actions.push_back(Move(Point(i, j), Point(x, y)));
               
               oppn_piece = oppn_board[x][y];
@@ -416,6 +416,7 @@ int main(int argc, char** argv) {
     // Output current state
     std::cout << step << " step" << std::endl;
     log << step << " step" << std::endl;
+    //log<<"what"<<std::endl;
     data = game.encode_output();
     std::cout << data << std::endl;
     log << data << std::endl;
@@ -429,7 +430,7 @@ int main(int argc, char** argv) {
     // Read action
     std::ifstream fin(file_action);
     Move action(Point(-1, -1), Point(-1, -1));
-    int total = 0;
+    int total = 0; //??? why ???
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     system("cls");
 #else
