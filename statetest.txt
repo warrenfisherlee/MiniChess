@@ -1,0 +1,540 @@
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1049
+what: -2
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1043
+what: -8
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1043
+what: -8
+
+why: 1044
+what: -7
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1043
+what: -8
+
+why: 1044
+what: -7
+
+why: 1049
+what: -2
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1051
+what: 0
+
+why: 1044
+what: -5
+
+why: 1043
+what: -6
+
+why: 1049
+what: 0
+
+why: 1051
+what: 2
+
+why: 1044
+what: -5
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1043
+what: -6
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1049
+what: 0
+
+why: 1049
+what: 0
+
+why: 1043
+what: -6
+
+why: 1051
+what: 2
+
+why: 1049
+what: 0
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1043
+what: -6
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1044
+what: -5
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 2
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1044
+what: -3
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: -14
+
+why: 1031
+what: -34
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1044
+what: -3
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1044
+what: -3
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: -14
+
+why: 1031
+what: -34
+
+why: 1049
+what: 2
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1044
+what: -3
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1049
+what: 2
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: -14
+
+why: 1031
+what: -34
+
+why: 1049
+what: 2
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1043
+what: -4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1044
+what: -3
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4
+
+why: 1051
+what: 4

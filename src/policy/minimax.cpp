@@ -39,7 +39,7 @@ std::pair<Move, int> Minimax::minimax(State *state, int depth){
     
     state->evaluate();
     //test<<"in 0"<<std::endl;
-    //test<<state->total<<std::endl;
+    test<<state->total<<std::endl;
     return std::pair<Move, int>(what, state->total);
   }
 

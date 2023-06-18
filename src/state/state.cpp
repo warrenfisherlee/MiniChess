@@ -6,71 +6,68 @@
 #include "./state.hpp"
 #include "../config.hpp"
 
+std::ofstream statetest("statetest.txt", std::ios::app);
 
 /**
  * @brief evaluate the state
  * 
  * @return int 
  */
-/*
+/**/
 int State::evaluate(){
   // [TODO] design your own evaluation function
   //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
   //std::ofstream test("test.txt", std::ios::app);
-  
+  statetest<<std::endl;
   auto this_board=this->board;
-  int ppiece, opiece;
   int score=0;
   for (int i=0; i<BOARD_H; i++)
   {
     for (int j=0; j<BOARD_W; j++)
     {
       int8_t ppiece = this_board.board[this->player][i][j];
-      switch(ppiece)
-      {
-        case 1:
-         score+=2;
-        case 2:
-         score+=6;
-        case 3:
-          score+=7;
-        case 4:
+      if (ppiece==1)
+        score+=2;
+      if (ppiece==2)
+        score+=6;
+      if (ppiece==3)
+        score+=7;
+      if (ppiece==4)
           score+=8;
-        case 5:
-          score+=20;
-        case 6:
-          score+=1000;
-      }
-   }
+      if (ppiece==5)
+        score+=20;
+      if (ppiece==6)
+        score+=1000;
+    }
   }
+  statetest<<"why: "<<score<<std::endl;
+
   for (int i=0; i<BOARD_H; i++)
   {
     for (int j=0; j<BOARD_W; j++)
     {
-      int8_t opiece = this_board.board[this->player][i][j];
-      switch(opiece)
-      {
-        case 1:
-         score-=2;
-        case 2:
-         score-=6;
-        case 3:
-          score-=7;
-        case 4:
-          score-=8;
-        case 5:
-          score-=20;
-        case 6:
-          score-=1000;
+      int8_t opiece = this_board.board[1-this->player][i][j];
+      if (opiece==1)
+        score-=2;
+      if (opiece==2)
+        score-=6;
+      if (opiece==3)
+        score-=7;
+      if (opiece==4)
+        score-=8;
+      if (opiece==5)
+        score-=20;
+      if (opiece==6)
+        score-=1000;
       }
    }
-  }
+  statetest<<"what: "<<score<<std::endl;
   //test<<"total: "<<total<<std::endl;
   this->total=score;
   return score;
 }
-*/
 
+/*
 int State::evaluate(){
   // [TODO] design your own evaluation function
   int score = 0;
@@ -111,7 +108,7 @@ int State::evaluate(){
   this->total=score;
   return score;
 }
-
+*/
 /**
  * @brief return next state after the move
  * 
