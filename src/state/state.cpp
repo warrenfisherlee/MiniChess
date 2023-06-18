@@ -14,6 +14,7 @@ std::ofstream statetest("statetest.txt", std::ios::app);
  * @return int 
  */
 /**/
+
 int State::evaluate(){
   // [TODO] design your own evaluation function
   //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
@@ -27,15 +28,15 @@ int State::evaluate(){
     {
       int8_t ppiece = this_board.board[this->player][i][j];
       if (ppiece==1)
-        score+=2;
-      if (ppiece==2)
-        score+=6;
-      if (ppiece==3)
-        score+=7;
-      if (ppiece==4)
-          score+=8;
-      if (ppiece==5)
         score+=20;
+      if (ppiece==2)
+        score+=60;
+      if (ppiece==3)
+        score+=70;
+      if (ppiece==4)
+          score+=80;
+      if (ppiece==5)
+        score+=200;
       if (ppiece==6)
         score+=1000;
     }
@@ -48,15 +49,15 @@ int State::evaluate(){
     {
       int8_t opiece = this_board.board[1-this->player][i][j];
       if (opiece==1)
-        score-=2;
-      if (opiece==2)
-        score-=6;
-      if (opiece==3)
-        score-=7;
-      if (opiece==4)
-        score-=8;
-      if (opiece==5)
         score-=20;
+      if (opiece==2)
+        score-=60;
+      if (opiece==3)
+        score-=70;
+      if (opiece==4)
+        score-=80;
+      if (opiece==5)
+        score-=200;
       if (opiece==6)
         score-=1000;
       }
