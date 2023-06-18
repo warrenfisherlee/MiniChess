@@ -52,6 +52,7 @@ class State{
     GameState game_state = UNKNOWN;
     Board board;
     int player = 0;
+    int total;
     std::vector<Move> legal_actions;
     
     State(){};
@@ -59,11 +60,53 @@ class State{
     State(Board board): board(board){};
     State(Board board, int player): board(board), player(player){};
     
+    int evaluate();
     State* next_state(Move move);
     void get_legal_actions();
     std::string encode_output();
     std::string encode_state();
 };
+
+int State::evaluate(){
+  // [TODO] design your own evaluation function
+  int score = 0;
+  for(int j=0;j<BOARD_H;j++){
+    for(int k=0;k<BOARD_W;k++){
+      //king
+      if(this->board.board[this->player][j][k] == 6)  
+        score += 1000;
+      if(this->board.board[1-this->player][j][k] == 6)
+        score -= 1000;
+      //queen
+      if(this->board.board[this->player][j][k] == 5)  
+        score += 20;
+      if(this->board.board[1-this->player][j][k] == 5)
+        score -= 20;
+      //bishop
+      if(this->board.board[this->player][j][k] == 4)  
+        score += 8;
+      if(this->board.board[1-this->player][j][k] == 4)
+        score -= 8;
+      //knight
+      if(this->board.board[this->player][j][k] == 3)  
+        score += 7;
+      if(this->board.board[1-this->player][j][k] == 3)
+        score -= 7;
+      //rook
+      if(this->board.board[this->player][j][k] == 2)  
+        score += 6;
+      if(this->board.board[1-this->player][j][k] == 2)
+        score -= 6;
+      //pawn
+      if(this->board.board[this->player][j][k] == 1)  
+        score += 2;
+      if(this->board.board[1-this->player][j][k] == 1)
+        score -= 2;
+    }
+  }
+  this->total=score;
+  return score;
+}
 
 /**
  * @brief return next state after the move
@@ -416,10 +459,13 @@ int main(int argc, char** argv) {
     // Output current state
     std::cout << step << " step" << std::endl;
     log << step << " step" << std::endl;
-    //log<<"what"<<std::endl;
+    log<<"what"<<std::endl;
+    log<<"total: "<<game.evaluate()<<std::endl;
     data = game.encode_output();
     std::cout << data << std::endl;
     log << data << std::endl;
+
+    
     
     data = game.encode_state();
     std::ofstream fout(file_state);
@@ -449,7 +495,7 @@ int main(int argc, char** argv) {
       total ++;
     }
     fin.close();
-
+    
     if (remove(file_action.c_str()) != 0)
       std::cerr << "Error removing file: " << file_action << "\n";
     // Take action
@@ -474,6 +520,8 @@ int main(int argc, char** argv) {
       log << x_axis[action.first.second] << y_axis[action.first.first] << " → " \
           << x_axis[action.second.second] << y_axis[action.second.first] << "\n";
     }
+    //int score=temp->evaluate();
+    
     game = *temp;
     
     step += 1;
