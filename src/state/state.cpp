@@ -25,7 +25,7 @@ int State::evaluate(){
   {
     for (int j=0; j<BOARD_W; j++)
     {
-      int ppiece = this_board.board[this->player][i][j];
+      int8_t ppiece = this_board.board[this->player][i][j];
       switch(ppiece)
       {
         case 1:
@@ -47,21 +47,21 @@ int State::evaluate(){
   {
     for (int j=0; j<BOARD_W; j++)
     {
-      int opiece = this_board.board[this->player][i][j];
+      int8_t opiece = this_board.board[this->player][i][j];
       switch(opiece)
       {
         case 1:
-         score+=2;
+         score-=2;
         case 2:
-         score+=6;
+         score-=6;
         case 3:
-          score+=7;
+          score-=7;
         case 4:
-          score+=8;
+          score-=8;
         case 5:
-          score+=20;
+          score-=20;
         case 6:
-          score+=1000;
+          score-=1000;
       }
    }
   }

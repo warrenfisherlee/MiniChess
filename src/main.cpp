@@ -460,7 +460,8 @@ int main(int argc, char** argv) {
     std::cout << step << " step" << std::endl;
     log << step << " step" << std::endl;
     log<<"what"<<std::endl;
-    log<<"total: "<<game.evaluate()<<std::endl;
+    log<<"player: "<<game.player<<std::endl;
+    //log<<"total: "<<game.evaluate()<<std::endl;
     data = game.encode_output();
     std::cout << data << std::endl;
     log << data << std::endl;
