@@ -63,8 +63,8 @@ int State::evaluate(){
    }
   statetest<<"what: "<<score<<std::endl;
   //test<<"total: "<<total<<std::endl;
-  this->total=score;
-  return score;
+  this->total=-score;
+  return -score;
 }
 
 /*

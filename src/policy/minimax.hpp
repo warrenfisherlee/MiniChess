@@ -10,5 +10,6 @@
 class Minimax{
 public:
   static Move get_move(State *state, int depth);
-  static std::pair<Move, int> minimax(State *state , int depth);
+  //static std::pair<Move, int> minimax(State *state , int depth);
+  static std::pair<int, int> minimax(State *state , int depth);
 };
