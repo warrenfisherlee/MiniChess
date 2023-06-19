@@ -4,7 +4,7 @@
 #include "../state/state.hpp"
 #include "./minimax.hpp"
 
-std::ofstream test("test.txt", std::ios::app);
+//std::ofstream test("test.txt", std::ios::app);
 
 
 /**
@@ -95,7 +95,7 @@ Move Minimax::get_move(State *state, int depth){
   }
   auto actions=state->legal_actions;
   std::pair<int, int> gogo=minimax(state, depth);
-  test<<"gg"<<gogo.second<<std::endl;
+  //test<<"gg"<<gogo.second<<std::endl;
   return actions[gogo.first];
 }
 
@@ -111,7 +111,7 @@ std::pair<int, int> Minimax::minimax(State *state, int depth){
   {
     state->evaluate();
     //test<<"in 0"<<std::endl;
-    test<<state->total<<std::endl;
+    //test<<state->total<<std::endl;
     return std::pair<int, int>(0, state->total);
   }
 
@@ -123,7 +123,7 @@ std::pair<int, int> Minimax::minimax(State *state, int depth){
     temp.second=-2e9;
     int ref_max=temp.second;
     auto actions=state->legal_actions;
-    test<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
+    //test<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
     int max_move;
     for (int i=0; i<actions.size(); i++)
     {

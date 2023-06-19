@@ -6,7 +6,7 @@
 #include "./state.hpp"
 #include "../config.hpp"
 
-std::ofstream statetest("statetest.txt", std::ios::app);
+//std::ofstream statetest("statetest.txt", std::ios::app);
 
 /**
  * @brief evaluate the state
@@ -21,11 +21,11 @@ int State::evaluate(){
   //std::ofstream test("test.txt", std::ios::app);
 
   //Pawns closer to promotion are good
-  //Knights get a bonus in more crowded situations
-  //Center control
+  //Knights get a bonus in more crowded situations (check)
+  //Center control (check)
   //If there are weak squares around your King
 
-  statetest<<std::endl;
+  //statetest<<std::endl;
   auto this_board=this->board;
   int score=0;
   for (int i=0; i<BOARD_H; i++)
@@ -47,19 +47,43 @@ int State::evaluate(){
         score-=1000;
     }
   }
-  statetest<<"before: "<<score<<std::endl;
+  //statetest<<"before: "<<score<<std::endl;
 
+  //player's board
   for (int i=0; i<BOARD_H; i++)
   {
     for (int j=0; j<BOARD_W; j++)
     {
       int8_t opiece = this_board.board[1-this->player][i][j];
       if (opiece==1)
+      {
         score+=20;
+      }
       if (opiece==2)
         score+=60;
-      if (opiece==3)
+      if (opiece==3) //Knight
+      {
         score+=70;
+        /*
+        for (int p=-1; p<2; p++)
+        {
+          for (int q=-1; q<2; q++)
+          {
+            if (i+q>=0 && i+q>=0 && i+p<6 && j+q<5)
+            {
+              int8_t knight_sur = this_board.board[1-this->player][i+p][j+q];
+              if (knight_sur)
+              {
+                score+=5;
+              }
+            }
+            
+          }
+        }
+        score-=5;
+        */
+      }
+        
       if (opiece==4)
         score+=80;
       if (opiece==5)
@@ -68,7 +92,18 @@ int State::evaluate(){
         score+=1000;
       }
    }
-  statetest<<"after: "<<score<<std::endl;
+  //statetest<<"after: "<<score<<std::endl;
+  /*
+  for (int i=2; i<4; i++)
+  {
+    for (int j=1; j<4; j++)
+    {
+        int8_t center_piece = this_board.board[1-this->player][i][j];
+        if (center_piece)
+          score+=5;
+    }
+  }
+  */
   //test<<"total: "<<total<<std::endl;
   this->total=score;
   return score;

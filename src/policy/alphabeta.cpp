@@ -4,7 +4,7 @@
 #include "../state/state.hpp"
 #include "./alphabeta.hpp"
 
-std::ofstream al("al.txt", std::ios::app);
+//std::ofstream al("al.txt", std::ios::app);
 
 
 /**
@@ -95,9 +95,9 @@ Move Alphabeta::get_move(State *state, int depth){
     //state->evaluate();
   }
   auto actions=state->legal_actions;
-  al<<"why"<<std::endl;
+ // al<<"why"<<std::endl;
   std::pair<std::pair<int, int>, std::pair<int, int>> gogo = alphabeta(state, depth, -2e9, 2e9);
-  al<<"gg"<<gogo.first.second<<std::endl;
+  //al<<"gg"<<gogo.first.second<<std::endl;
   return actions[gogo.first.first];
 }
 
@@ -114,7 +114,7 @@ std::pair<std::pair<int, int>, std::pair<int, int>> Alphabeta::alphabeta(State *
     p.first.second=state->total;
     p.second.first=-2e9;
     p.second.second=2e9;
-    al<<"depth0: "<<state->total<<std::endl;
+    //al<<"depth0: "<<state->total<<std::endl;
     return p;
   }
 
@@ -129,7 +129,7 @@ std::pair<std::pair<int, int>, std::pair<int, int>> Alphabeta::alphabeta(State *
     int ref_max=maxmax.first.second;
     auto actions=state->legal_actions;
     //al<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
-    al<<"what"<<std::endl;
+    //al<<"what"<<std::endl;
     int max_move;
     for (int i=0; i<actions.size(); i++)
     {
@@ -141,7 +141,7 @@ std::pair<std::pair<int, int>, std::pair<int, int>> Alphabeta::alphabeta(State *
         maxmax.first.second=temp.first.second;
       }
       alpha=std::max(alpha, maxmax.first.second);
-      if (alpha>=beta) break;
+      if (alpha>beta) break;
     }
     maxmax.second.second=alpha;
     return maxmax;
@@ -163,7 +163,7 @@ std::pair<std::pair<int, int>, std::pair<int, int>> Alphabeta::alphabeta(State *
         minmin.first.second=temp.first.second;
       }
       beta=std::min(beta, minmin.first.second);
-      if (beta<=alpha) break;
+      if (beta<alpha) break;
     }
     minmin.second.first=beta;
     return minmin;
