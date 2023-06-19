@@ -19,6 +19,12 @@ int State::evaluate(){
   // [TODO] design your own evaluation function
   //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
   //std::ofstream test("test.txt", std::ios::app);
+
+  //Pawns closer to promotion are good
+  //Knights get a bonus in more crowded situations
+  //Center control
+  //If there are weak squares around your King
+
   statetest<<std::endl;
   auto this_board=this->board;
   int score=0;
@@ -28,20 +34,20 @@ int State::evaluate(){
     {
       int8_t ppiece = this_board.board[this->player][i][j];
       if (ppiece==1)
-        score+=20;
+        score-=20;
       if (ppiece==2)
-        score+=60;
+        score-=60;
       if (ppiece==3)
-        score+=70;
+        score-=70;
       if (ppiece==4)
-          score+=80;
+        score-=80;
       if (ppiece==5)
-        score+=200;
+        score-=200;
       if (ppiece==6)
-        score+=1000;
+        score-=1000;
     }
   }
-  statetest<<"why: "<<score<<std::endl;
+  statetest<<"before: "<<score<<std::endl;
 
   for (int i=0; i<BOARD_H; i++)
   {
@@ -49,23 +55,23 @@ int State::evaluate(){
     {
       int8_t opiece = this_board.board[1-this->player][i][j];
       if (opiece==1)
-        score-=20;
+        score+=20;
       if (opiece==2)
-        score-=60;
+        score+=60;
       if (opiece==3)
-        score-=70;
+        score+=70;
       if (opiece==4)
-        score-=80;
+        score+=80;
       if (opiece==5)
-        score-=200;
+        score+=200;
       if (opiece==6)
-        score-=1000;
+        score+=1000;
       }
    }
-  statetest<<"what: "<<score<<std::endl;
+  statetest<<"after: "<<score<<std::endl;
   //test<<"total: "<<total<<std::endl;
-  this->total=-score;
-  return -score;
+  this->total=score;
+  return score;
 }
 
 /*
