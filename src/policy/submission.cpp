@@ -102,6 +102,7 @@ Move Alphabeta2::get_move(State *state, int depth){
 std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, int beta){
   if (depth==0)
   {
+    //if (state->player==1) state->evaluate();
     state->evaluate2();
     return std::pair<int, int>(0, state->total);
   }
