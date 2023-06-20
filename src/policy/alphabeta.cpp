@@ -4,7 +4,7 @@
 #include "../state/state.hpp"
 #include "./alphabeta.hpp"
 
-//std::ofstream al("al.txt", std::ios::app);
+//std::ofstream test("test.txt", std::ios::app);
 
 
 /**
@@ -87,7 +87,6 @@ std::pair<Move, int> Minimax::minimax(State *state, int depth){
 }
 */
 
-
 Move Alphabeta::get_move(State *state, int depth){
   if(!state->legal_actions.size())
   {
@@ -95,78 +94,60 @@ Move Alphabeta::get_move(State *state, int depth){
     //state->evaluate();
   }
   auto actions=state->legal_actions;
- // al<<"why"<<std::endl;
-  std::pair<std::pair<int, int>, std::pair<int, int>> gogo = alphabeta(state, depth, -2e9, 2e9);
-  //al<<"gg"<<gogo.first.second<<std::endl;
-  return actions[gogo.first.first];
+  std::pair<int, int> gogo=alphabeta(state, depth, -2e9, 2e9);
+  //test<<"gg"<<gogo.second<<std::endl;
+  return actions[gogo.first];
 }
 
-std::pair<std::pair<int, int>, std::pair<int, int>> Alphabeta::alphabeta(State *state, int depth, int alpha, int beta){
-  //test<<"in minimax"<<std::endl;
-  //alpha=-2e9;
-  //beta=2e9;
-  Move what; //useless move
+std::pair<int, int> Alphabeta::alphabeta(State *state, int depth, int alpha, int beta){
   if (depth==0)
   {
     state->evaluate();
-    std::pair<std::pair<int, int>, std::pair<int, int>> p;
-    p.first.first=0;
-    p.first.second=state->total;
-    p.second.first=-2e9;
-    p.second.second=2e9;
-    //al<<"depth0: "<<state->total<<std::endl;
-    return p;
+    return std::pair<int, int>(0, state->total);
   }
 
-  std::pair<std::pair<int, int>, std::pair<int, int>> temp;
+  std::pair<int, int> temp;
 
   if (depth%2) //max
   {
-    //al<<"depth: "<<depth<<std::endl;
-    //test<<"in 1"<<std::endl;
-    std::pair<std::pair<int, int>, std::pair<int, int>> maxmax;
-    maxmax.first.second=-2e9;
-    int ref_max=maxmax.first.second;
+    temp.second=-2e9;
+    int ref_max=temp.second;
     auto actions=state->legal_actions;
-    //al<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
-    //al<<"what"<<std::endl;
     int max_move;
-    for (int i=0; i<actions.size(); i++)
+    int i=0;
+    for (auto it=actions.begin(); it!=actions.end(); it++)
     {
       temp=alphabeta(state->next_state(actions[i]), depth-1, alpha, beta);
-      if (depth!=1) alpha=std::max(temp.second.first, alpha);
-      if (temp.first.second>maxmax.first.second)
+      if (temp.second>ref_max)
       {
-        maxmax.first.first=i;
-        maxmax.first.second=temp.first.second;
+        max_move=i;
+        ref_max=temp.second;
       }
-      alpha=std::max(alpha, maxmax.first.second);
-      if (alpha>beta) break;
+      alpha=std::max(alpha, ref_max);
+      if (alpha>=beta) break;
+      i++;
     }
-    maxmax.second.second=alpha;
-    return maxmax;
+    return std::pair<int, int>(max_move, ref_max);
   }
   else //min
   {
-    std::pair<std::pair<int, int>, std::pair<int, int>> minmin;
-    minmin.first.second=2e9;
-    int ref_min=minmin.first.second;
+    temp.second=2e9;
+    int ref_min=temp.second;
     auto actions=state->legal_actions;
     int min_move;
-    for (int i=0; i<actions.size(); i++)
-    {
+    int i=0;
+    for (auto it=actions.begin(); it!=actions.end(); it++){
       temp=alphabeta(state->next_state(actions[i]), depth-1, alpha, beta);
-      if (depth!=1) beta=std::min(temp.second.second, beta);
-      if (temp.first.second<minmin.first.second)
+      if (temp.second<ref_min)
       {
-        minmin.first.first=i;
-        minmin.first.second=temp.first.second;
+        min_move=i;
+        ref_min=temp.second;
       }
-      beta=std::min(beta, minmin.first.second);
-      if (beta<alpha) break;
+      beta=std::min(beta, ref_min);
+      if (beta<=alpha) break;
+      i++;
     }
-    minmin.second.first=beta;
-    return minmin;
+    return std::pair<int, int>(min_move, ref_min);
   }
 }
 

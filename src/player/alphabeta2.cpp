@@ -46,10 +46,10 @@ void write_valid_spot(std::ofstream& fout) {
     auto move = Alphabeta2::get_move(root, depth);
     fout << move.first.first << " " << move.first.second << " "\
          << move.second.first << " " << move.second.second << std::endl;
-    depth++;
+    depth+=2;
     // Remember to flush the output to ensure the last action is written to file.
     fout.flush();
-    //break;
+    break;
   }
 }
 

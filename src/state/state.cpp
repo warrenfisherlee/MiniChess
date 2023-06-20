@@ -15,6 +15,117 @@
  */
 /**/
 
+int State::evaluate2(){
+  // [TODO] design your own evaluation function
+  //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
+  //std::ofstream test("test.txt", std::ios::app);
+
+  //Pawns closer to promotion are good
+  //Knights get a bonus in more crowded situations (check)
+  //Center control (check)
+  //If there are weak squares around your King
+
+  //statetest<<std::endl;
+  auto this_board=this->board;
+  int score=0;
+  for (int i=0; i<BOARD_H; i++)
+  {
+    for (int j=0; j<BOARD_W; j++)
+    {
+      int8_t ppiece = this_board.board[this->player][i][j];
+      if (ppiece==1)
+      {
+        score-=20;
+        //if ((1-this->player)==0) score-=20+5*(BOARD_H-i);
+        //else score-=20+5*i;
+      }
+      if (ppiece==2)
+        score-=60;
+      if (ppiece==3)
+        score-=70;
+      if (ppiece==4)
+        score-=80;
+      if (ppiece==5)
+        score-=200;
+      if (ppiece==6)
+        score-=1000;
+    }
+  }
+  //statetest<<"before: "<<score<<std::endl;
+
+  //player's board
+  for (int i=0; i<BOARD_H; i++)
+  {
+    for (int j=0; j<BOARD_W; j++)
+    {
+      int8_t opiece = this_board.board[1-this->player][i][j];
+      if (opiece==1)
+      {
+        score+=20;
+        /*
+        if ((1-this->player)==0)
+        {
+          score+=20-5*i;
+          if (i==1) score+=100;
+        } 
+        else
+        {
+          score+=20-5*(BOARD_H-i-1);
+          if (i==BOARD_H-2) score+=100;
+          
+        } 
+        */
+      }
+      if (opiece==2)
+        score+=60;
+      if (opiece==3) //Knight
+      {
+        score+=70;
+        
+        for (int p=-2; p<3; p++)
+        {
+          for (int q=-2; q<3; q++)
+          {
+            if (i+p>=0 && i+q>=0 && i+p<6 && j+q<5)
+            {
+              int8_t knight_sur = this_board.board[1-this->player][i+p][j+q];
+              if (knight_sur)
+              {
+                score+=1;
+              }
+            }
+            
+          }
+        }
+        score-=1;
+        
+      }
+        
+      if (opiece==4)
+        score+=80;
+      if (opiece==5)
+        score+=200;
+      if (opiece==6)
+        score+=1000;
+      }
+   }
+  //statetest<<"after: "<<score<<std::endl;
+  /*
+  for (int i=2; i<4; i++)
+  {
+    for (int j=1; j<4; j++)
+    {
+        int8_t center_piece = this_board.board[1-this->player][i][j];
+        if (center_piece)
+          score+=5;
+    }
+  }
+  */
+  //test<<"total: "<<total<<std::endl;
+  this->total=score;
+  return score;
+}
+
 int State::evaluate(){
   // [TODO] design your own evaluation function
   //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
@@ -109,48 +220,7 @@ int State::evaluate(){
   return score;
 }
 
-/*
-int State::evaluate(){
-  // [TODO] design your own evaluation function
-  int score = 0;
-  for(int j=0;j<BOARD_H;j++){
-    for(int k=0;k<BOARD_W;k++){
-      //king
-      if(this->board.board[this->player][j][k] == 6)  
-        score += 1000;
-      if(this->board.board[1-this->player][j][k] == 6)
-        score -= 1000;
-      //queen
-      if(this->board.board[this->player][j][k] == 5)  
-        score += 20;
-      if(this->board.board[1-this->player][j][k] == 5)
-        score -= 20;
-      //bishop
-      if(this->board.board[this->player][j][k] == 4)  
-        score += 8;
-      if(this->board.board[1-this->player][j][k] == 4)
-        score -= 8;
-      //knight
-      if(this->board.board[this->player][j][k] == 3)  
-        score += 7;
-      if(this->board.board[1-this->player][j][k] == 3)
-        score -= 7;
-      //rook
-      if(this->board.board[this->player][j][k] == 2)  
-        score += 6;
-      if(this->board.board[1-this->player][j][k] == 2)
-        score -= 6;
-      //pawn
-      if(this->board.board[this->player][j][k] == 1)  
-        score += 2;
-      if(this->board.board[1-this->player][j][k] == 1)
-        score -= 2;
-    }
-  }
-  this->total=score;
-  return score;
-}
-*/
+
 /**
  * @brief return next state after the move
  * 

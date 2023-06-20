@@ -100,20 +100,9 @@ Move Alphabeta2::get_move(State *state, int depth){
 }
 
 std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, int beta){
-  //test<<"in minimax"<<std::endl;
-  /*
-  if(!state->legal_actions.size())
-  {
-    state->get_legal_actions();
-    //state->evaluate();
-  }
-  */
-  Move what; //useless move
   if (depth==0)
   {
-    state->evaluate();
-    //test<<"in 0"<<std::endl;
-    //test<<state->total<<std::endl;
+    state->evaluate2();
     return std::pair<int, int>(0, state->total);
   }
 
@@ -121,17 +110,14 @@ std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, in
 
   if (depth%2) //max
   {
-    //test<<"in 1"<<std::endl;
     temp.second=-2e9;
     int ref_max=temp.second;
     auto actions=state->legal_actions;
-    //test<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
     int max_move;
-    for (int i=0; i<actions.size(); i++)
+    int i=0;
+    for (auto it=actions.begin(); it!=actions.end(); it++)
     {
       temp=alphabeta(state->next_state(actions[i]), depth-1, alpha, beta);
-      //if (depth==1) temp.first=actions[i];
-      //if (depth==1) temp.first=i;
       if (temp.second>ref_max)
       {
         max_move=i;
@@ -139,6 +125,7 @@ std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, in
       }
       alpha=std::max(alpha, ref_max);
       if (alpha>=beta) break;
+      i++;
     }
     return std::pair<int, int>(max_move, ref_max);
   }
@@ -148,8 +135,8 @@ std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, in
     int ref_min=temp.second;
     auto actions=state->legal_actions;
     int min_move;
-    for (int i=0; i<actions.size(); i++)
-    {
+    int i=0;
+    for (auto it=actions.begin(); it!=actions.end(); it++){
       temp=alphabeta(state->next_state(actions[i]), depth-1, alpha, beta);
       if (temp.second<ref_min)
       {
@@ -158,6 +145,7 @@ std::pair<int, int> Alphabeta2::alphabeta(State *state, int depth, int alpha, in
       }
       beta=std::min(beta, ref_min);
       if (beta<=alpha) break;
+      i++;
     }
     return std::pair<int, int>(min_move, ref_min);
   }

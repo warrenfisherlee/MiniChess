@@ -67,62 +67,7 @@ class State{
     std::string encode_state();
 };
 
-int State::evaluate(){
-  // [TODO] design your own evaluation function
-  //Queen=20, Bishop=8, Knight=7, Rook=6, Pawn=2.
-  //std::ofstream test("test.txt", std::ios::app);
-  
-  auto this_board=this->board;
-  int ppiece, opiece;
-  int score=0;
-  for (int i=0; i<BOARD_H; i++)
-  {
-    for (int j=0; j<BOARD_W; j++)
-    {
-      int8_t ppiece = this_board.board[this->player][i][j];
-      switch(ppiece)
-      {
-        case 1:
-         score+=2;
-        case 2:
-         score+=6;
-        case 3:
-          score+=7;
-        case 4:
-          score+=8;
-        case 5:
-          score+=20;
-        case 6:
-          score+=1000;
-      }
-   }
-  }
-  for (int i=0; i<BOARD_H; i++)
-  {
-    for (int j=0; j<BOARD_W; j++)
-    {
-      int8_t opiece = this_board.board[1-this->player][i][j];
-      switch(opiece)
-      {
-        case 1:
-         score-=2;
-        case 2:
-         score-=6;
-        case 3:
-          score-=7;
-        case 4:
-          score-=8;
-        case 5:
-          score-=20;
-        case 6:
-          score-=1000;
-      }
-   }
-  }
-  //test<<"total: "<<total<<std::endl;
-  this->total=score;
-  return score;
-}
+
 /*
 int State::evaluate(){
   // [TODO] design your own evaluation function
@@ -518,8 +463,8 @@ int main(int argc, char** argv) {
     // Output current state
     std::cout << step << " step" << std::endl;
     log << step << " step" << std::endl;
-    log<<"what"<<std::endl;
-    log<<"player: "<<game.player<<std::endl;
+    //log<<"what"<<std::endl;
+    //log<<"player: "<<game.player<<std::endl;
     //log<<"total: "<<game.evaluate()<<std::endl;
     data = game.encode_output();
     std::cout << data << std::endl;

@@ -91,27 +91,20 @@ Move Minimax::get_move(State *state, int depth){
   if(!state->legal_actions.size())
   {
     state->get_legal_actions();
-    //state->evaluate();
   }
   auto actions=state->legal_actions;
   std::pair<int, int> gogo=minimax(state, depth);
-  //test<<"gg"<<gogo.second<<std::endl;
   return actions[gogo.first];
 }
 
 std::pair<int, int> Minimax::minimax(State *state, int depth){
-  //test<<"in minimax"<<std::endl;
   if(!state->legal_actions.size())
   {
     state->get_legal_actions();
-    //state->evaluate();
   }
-  Move what; //useless move
   if (depth==0)
   {
     state->evaluate();
-    //test<<"in 0"<<std::endl;
-    //test<<state->total<<std::endl;
     return std::pair<int, int>(0, state->total);
   }
 
@@ -119,17 +112,13 @@ std::pair<int, int> Minimax::minimax(State *state, int depth){
 
   if (depth%2) //max
   {
-    //test<<"in 1"<<std::endl;
     temp.second=-2e9;
     int ref_max=temp.second;
     auto actions=state->legal_actions;
-    //test<<"size: "<<actions.size()<<"player: "<<state->player<<std::endl;
     int max_move;
     for (int i=0; i<actions.size(); i++)
     {
       temp=minimax(state->next_state(actions[i]), depth-1);
-      //if (depth==1) temp.first=actions[i];
-      //if (depth==1) temp.first=i;
       if (temp.second>ref_max)
       {
         max_move=i;
